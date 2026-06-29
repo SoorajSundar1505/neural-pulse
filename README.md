@@ -12,7 +12,7 @@ Neural Pulse is a terminal dashboard that streams OpenAI chat completions and vi
 ## Features
 
 - **Live streaming** — OpenAI chat completions with usage reconciliation
-- **Real metrics** — input/output tokens, TPS, latency, and cost
+- **Real metrics** — input/output/total tokens, TPS, latency, and cost
 - **Event log** — timestamped request timeline (connect, first token, completion)
 - **Fixed dashboard** — alt-screen UI with incremental ANSI updates (no scroll)
 - **Interactive sessions** — run multiple prompts without restarting
@@ -36,12 +36,17 @@ npx neural-pulse
 **From source**
 
 ```bash
-git clone https://github.com/suraj/neural-pulse.git
+git clone https://github.com/SoorajSundar1505/neural-pulse.git
 cd neural-pulse
 npm install
 cp .env.example .env
 # Add your OPENAI_API_KEY to .env
+npm start
 ```
+
+For local development, use `npm start` (same as `node bin/neural-pulse.js`). Pass a prompt with `npm start -- "Your prompt here"`.
+
+> **Note:** `npm install -g neural-pulse` and `npx neural-pulse` work once the package is [published to npm](https://www.npmjs.com/package/neural-pulse). Until then, run from source as above.
 
 ## Configuration
 
@@ -56,12 +61,14 @@ OPENAI_MODEL=gpt-4o-mini
 |----------|---------|-------------|
 | `OPENAI_API_KEY` | — | **Required.** Your OpenAI API key |
 | `OPENAI_MODEL` | `gpt-4o-mini` | Default model |
+| `NEURAL_PULSE_PROMPT` | *(see config)* | Default prompt when none is given |
+| `NEURAL_PULSE_LAYERS` | `32` | Layer count for pipeline animation |
 | `NEURAL_PULSE_FPS` | `30` | Dashboard render loop FPS |
 | `NEURAL_PULSE_ANIM_MS` | `100` | Pipeline pulse animation (ms) |
 | `NEURAL_PULSE_MAX_TOKENS` | *(unset)* | Optional completion token cap |
 | `NEURAL_PULSE_ASCII` | `0` | Set to `1` to force ASCII spinner |
 
-`.env` is loaded automatically from the current directory.
+`.env` is loaded automatically from your **current working directory**. When running from a cloned repo, a `.env` in the project root is also picked up.
 
 ## Usage
 

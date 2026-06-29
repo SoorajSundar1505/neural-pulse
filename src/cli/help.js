@@ -61,6 +61,6 @@ ENVIRONMENT
   NEURAL_PULSE_ASCII=1  Force ASCII mode (no Unicode spinner)
 
 DOCUMENTATION
-  https://github.com/suraj/neural-pulse#readme
+  https://github.com/SoorajSundar1505/neural-pulse#readme
 `);
 }

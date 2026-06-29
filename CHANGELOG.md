@@ -19,4 +19,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unicode spinner with ASCII fallback (`NEURAL_PULSE_ASCII=1`)
 - Graceful error handling for API, network, and rate-limit failures
 
-[1.0.0]: https://github.com/suraj/neural-pulse/releases/tag/v1.0.0
+[1.0.0]: https://github.com/SoorajSundar1505/neural-pulse/releases/tag/v1.0.0

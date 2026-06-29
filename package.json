@@ -39,11 +39,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/suraj/neural-pulse.git"
+    "url": "git+https://github.com/SoorajSundar1505/neural-pulse.git"
   },
-  "homepage": "https://github.com/suraj/neural-pulse#readme",
+  "homepage": "https://github.com/SoorajSundar1505/neural-pulse#readme",
   "bugs": {
-    "url": "https://github.com/suraj/neural-pulse/issues"
+    "url": "https://github.com/SoorajSundar1505/neural-pulse/issues"
   },
   "dependencies": {
     "ansi-escapes": "^7.0.0",

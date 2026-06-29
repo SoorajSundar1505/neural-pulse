@@ -2,152 +2,187 @@
 
 **Real-time LLM observability dashboard for OpenAI models.**
 
-Neural Pulse is a terminal dashboard for monitoring OpenAI responses in real time. Track token usage, latency, throughput, API cost, and live streaming output in a polished, htop-style interface.
+Neural Pulse is a terminal dashboard for monitoring OpenAI responses in real time. Track token usage, latency, throughput (TPS), API cost, and live streaming output in a polished, htop-style interface.
 
-<!-- Replace with a screenshot or asciinema recording before publishing -->
-<!-- ![Neural Pulse dashboard](docs/screenshot.png) -->
+![Neural Pulse Demo](./screenshots/demo.gif)
 
-> The pipeline animation is an illustrative visualization inspired by transformer inference. It represents the request lifecycle and streaming activity, not the model's internal activations.
+> The pipeline is an illustrative visualization inspired by transformer inference. It represents the request lifecycle and streaming activity, not the model's internal activations.
+
+---
+
+## Quick Start
+
+```bash
+export OPENAI_API_KEY=sk-your-key
+
+npx neural-pulse "Explain artificial intelligence"
+```
+
+---
 
 ## Features
 
-- **Live streaming** — OpenAI chat completions with usage reconciliation
-- **Real metrics** — input/output/total tokens, TPS, latency, and cost
-- **Event log** — timestamped request timeline (connect, first token, completion)
-- **Fixed dashboard** — alt-screen UI with incremental ANSI updates (no scroll)
-- **Interactive sessions** — run multiple prompts without restarting
-- **Compact layout** — automatic fallback for terminals under 140 columns
-- **Cross-platform** — macOS Terminal, iTerm2, Warp, Windows Terminal, Linux
+- Live streaming OpenAI responses
+- Real-time token usage, TPS, latency, and API cost
+- Timestamped event log
+- Fixed dashboard with no terminal scrolling
+- Interactive prompt sessions
+- Compact layout for smaller terminals
+- Cross-platform support (macOS, Linux, Windows Terminal, Warp, iTerm2)
+
+---
 
 ## Installation
 
-**Global install**
-
-```bash
-npm install -g neural-pulse
-```
-
-**One-off run**
+### Run without installing
 
 ```bash
 npx neural-pulse
 ```
 
-**From source**
+### Install globally
+
+```bash
+npm install -g neural-pulse
+```
+
+### Run from source
 
 ```bash
 git clone https://github.com/SoorajSundar1505/neural-pulse.git
 cd neural-pulse
 npm install
 cp .env.example .env
-# Add your OPENAI_API_KEY to .env
+# Add your OPENAI_API_KEY
 npm start
 ```
 
-For local development, use `npm start` (same as `node bin/neural-pulse.js`). Pass a prompt with `npm start -- "Your prompt here"`.
+---
 
-> **Note:** `npm install -g neural-pulse` and `npx neural-pulse` work once the package is [published to npm](https://www.npmjs.com/package/neural-pulse). Until then, run from source as above.
+## Authentication
+
+Neural Pulse uses **your own OpenAI API key**.
+
+Requests are sent directly to the OpenAI API. Your usage, billing, and rate limits remain on your own OpenAI account.
+
+---
 
 ## Configuration
 
-Create a `.env` file in your working directory (or export variables in your shell):
+Either export your API key:
+
+```bash
+export OPENAI_API_KEY=sk-your-key
+```
+
+or create a `.env` file:
 
 ```env
-OPENAI_API_KEY=sk-your-key-here
+OPENAI_API_KEY=sk-your-key
 OPENAI_MODEL=gpt-4o-mini
 ```
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `OPENAI_API_KEY` | — | **Required.** Your OpenAI API key |
+| `OPENAI_API_KEY` | — | Required OpenAI API key |
 | `OPENAI_MODEL` | `gpt-4o-mini` | Default model |
-| `NEURAL_PULSE_PROMPT` | *(see config)* | Default prompt when none is given |
-| `NEURAL_PULSE_LAYERS` | `32` | Layer count for pipeline animation |
-| `NEURAL_PULSE_FPS` | `30` | Dashboard render loop FPS |
-| `NEURAL_PULSE_ANIM_MS` | `100` | Pipeline pulse animation (ms) |
-| `NEURAL_PULSE_MAX_TOKENS` | *(unset)* | Optional completion token cap |
-| `NEURAL_PULSE_ASCII` | `0` | Set to `1` to force ASCII spinner |
+| `NEURAL_PULSE_FPS` | `30` | Dashboard refresh rate |
+| `NEURAL_PULSE_ANIM_MS` | `100` | Pipeline animation speed |
+| `NEURAL_PULSE_MAX_TOKENS` | *(unset)* | Optional completion token limit |
+| `NEURAL_PULSE_ASCII` | `0` | Force ASCII mode |
 
-`.env` is loaded automatically from your **current working directory**. When running from a cloned repo, a `.env` in the project root is also picked up.
+`.env` is automatically loaded from the current working directory.
+
+---
 
 ## Usage
 
 ```bash
-# Interactive — enter prompts in the dashboard
+# Interactive mode
 neural-pulse
 
-# Run immediately with a prompt
+# Run with a prompt
 neural-pulse "Explain transformers"
 
-# Specify a model
+# Choose a model
 neural-pulse --model gpt-4o-mini "Write a haiku about GPUs"
 
-# Help and version
+# Help
 neural-pulse --help
+
+# Version
 neural-pulse --version
 ```
 
-### Keyboard shortcuts
+---
+
+## Keyboard Shortcuts
 
 | Key | Action |
 |-----|--------|
 | `P` / `Ctrl+P` | New prompt |
 | `Q` / `Ctrl+C` | Exit |
 
-## Supported models
+---
 
-Neural Pulse works with any OpenAI chat model your API key can access. Built-in cost estimates are provided for:
+## Supported Models
 
-| Model | Input / 1M tokens | Output / 1M tokens |
-|-------|-------------------|---------------------|
-| `gpt-4o-mini` | $0.15 | $0.60 |
-| `gpt-4o` | $2.50 | $10.00 |
-| `gpt-4.1` | $2.00 | $8.00 |
-| `gpt-4.1-mini` | $0.40 | $1.60 |
-| `gpt-4-turbo` | $10.00 | $30.00 |
-| `gpt-3.5-turbo` | $0.50 | $1.50 |
+Neural Pulse works with any OpenAI model your API key can access.
 
-Prefix matching handles versioned model names (e.g. `gpt-4o-mini-2024-07-18`).
+| Model | Input / 1M | Output / 1M |
+|-------|------------|-------------|
+| gpt-4o-mini | $0.15 | $0.60 |
+| gpt-4o | $2.50 | $10.00 |
+| gpt-4.1 | $2.00 | $8.00 |
+| gpt-4.1-mini | $0.40 | $1.60 |
+| gpt-4-turbo | $10.00 | $30.00 |
+| gpt-3.5-turbo | $0.50 | $1.50 |
 
-Add or update pricing in [`src/metrics/pricing.js`](src/metrics/pricing.js).
+Versioned model names are automatically matched (for example `gpt-4o-mini-2024-07-18`).
 
-## Cost calculation
+---
+
+## Cost Calculation
 
 ```
 cost = (inputTokens × inputPrice + outputTokens × outputPrice) / 1,000,000
 ```
 
-Token counts are estimated live during streaming and reconciled from `usage` data when the API provides it.
+During streaming, token counts and cost are estimated in real time. When the OpenAI API returns usage information, Neural Pulse reconciles the estimates with the final reported token counts.
+
+---
 
 ## Requirements
 
-- Node.js **18+**
+- Node.js 18+
 - OpenAI API key
-- Interactive terminal (minimum **76 columns**)
+- Interactive terminal (minimum 76 columns)
 
-## Publishing
+---
 
-Maintainers can publish to npm:
+## Why Neural Pulse?
 
-```bash
-npm login
-npm publish
-```
+Neural Pulse helps developers observe OpenAI requests in real time by tracking:
 
-### Version bumps
+- Token usage
+- Tokens per second (TPS)
+- Latency
+- API cost
+- Streaming output
+- Request lifecycle
 
-```bash
-npm version patch   # 1.0.0 → 1.0.1
-npm version minor   # 1.0.0 → 1.1.0
-npm version major   # 1.0.0 → 2.0.0
-```
+It's designed for developers building, debugging, and demonstrating LLM applications.
 
-The dashboard reads the version from `package.json` automatically.
+---
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Please read our [Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions are welcome.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+---
 
 ## License
 
-[MIT](LICENSE) © Suraj S
+MIT © Suraj S

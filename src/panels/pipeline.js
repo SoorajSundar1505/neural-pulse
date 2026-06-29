@@ -69,9 +69,10 @@ export class PipelinePanel {
     const w = region.width;
 
     if (this.allComplete) {
-      const top = Math.floor((FIXED.pipelineLines - 2) / 2);
-      lines[top] = centerInWidth(GREEN('✓ Completed'), w);
-      lines[top + 1] = centerInWidth(MUTED('Model finished successfully'), w);
+      lines[Math.floor(FIXED.pipelineLines / 2)] = centerInWidth(
+        GREEN('✓ Request Completed'),
+        w,
+      );
       return lines;
     }
 

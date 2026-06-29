@@ -15,8 +15,8 @@ const LABEL_WIDTH = 14;
 
 /** @type {[string, keyof ReturnType<typeof buildPerformanceDisplay>][]} */
 const ROWS = [
-  ['Input Token', 'inputTokens'],
-  ['Output Token', 'outputTokens'],
+  ['Input Tokens', 'inputTokens'],
+  ['Output Tokens', 'outputTokens'],
   ['Total', 'totalTokens'],
   ['TPS', 'tps'],
   ['Latency', 'latency'],

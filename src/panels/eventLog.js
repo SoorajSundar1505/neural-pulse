@@ -93,7 +93,7 @@ export class EventLogPanel {
    */
   logStreamCompleted(elapsedSec) {
     this.push({
-      message: `✓ Stream completed (${elapsedSec.toFixed(2)} s)`,
+      message: `✓ Request completed (${elapsedSec.toFixed(2)} s)`,
       kind: 'success',
       noTimestamp: true,
     });

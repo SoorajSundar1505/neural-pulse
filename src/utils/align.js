@@ -53,7 +53,7 @@ export function centerInWidth(text, width) {
  * @returns {string}
  */
 export function formatStatusBar({ completed, streaming }) {
-  const hints = 'Ctrl+P New Prompt │ Ctrl+C Exit';
+  const hints = 'Press Ctrl+P for New Prompt │ Ctrl+C Exit';
   if (completed) return `✓ Complete │ ${hints}`;
   if (streaming) return `● Streaming │ ${hints}`;
   return `○ Idle │ ${hints}`;

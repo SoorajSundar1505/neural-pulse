@@ -23,6 +23,7 @@ export function buildPerformanceDisplay(tracker) {
     elapsed: formatElapsed(tracker.getStreamingDurationMs()),
     tps: tps > 0 ? tps.toFixed(1) : '—',
     peakTps: tracker.peakTps > 0 ? tracker.peakTps.toFixed(1) : '—',
+    costLabel: tracker.usageReconciled ? 'Final Cost' : 'Estimated Cost',
     cost: formatCost(calculateCost(tracker.model, inputTokens, outputTokens)),
   };
 }

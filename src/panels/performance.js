@@ -11,7 +11,7 @@ import { CYAN, GREEN } from '../dashboard/theme.js';
 
 export const PERFORMANCE_ROWS = 6;
 
-const LABEL_WIDTH = 12;
+const LABEL_WIDTH = 14;
 
 /** @type {[string, keyof ReturnType<typeof buildPerformanceDisplay>][]} */
 const ROWS = [
@@ -20,7 +20,6 @@ const ROWS = [
   ['Total', 'totalTokens'],
   ['TPS', 'tps'],
   ['Latency', 'latency'],
-  ['Cost', 'cost'],
 ];
 
 /**
@@ -42,7 +41,9 @@ export class PerformancePanel {
   buildLines(metrics, region) {
     const d = buildPerformanceDisplay(metrics);
     const lineWidth = Math.max(LABEL_WIDTH + 4, region.width);
-    return ROWS.map(([label, key]) => metricRow(label, d[key], lineWidth));
+    const lines = ROWS.map(([label, key]) => metricRow(label, d[key], lineWidth));
+    lines.push(metricRow(d.costLabel, d.cost, lineWidth));
+    return lines;
   }
 
   /**
@@ -51,7 +52,8 @@ export class PerformancePanel {
    * @returns {string}
    */
   stateKey(metrics, region) {
-    return this.buildLines(metrics, region).join('|');
+    const d = buildPerformanceDisplay(metrics);
+    return `${this.buildLines(metrics, region).join('|')}|${d.costLabel}`;
   }
 
   /**

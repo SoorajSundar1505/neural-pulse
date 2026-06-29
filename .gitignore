@@ -6,3 +6,7 @@ node_modules/
 coverage/
 .idea/
 .vscode/
+
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md

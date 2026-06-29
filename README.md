@@ -2,12 +2,12 @@
 
 **Real-time LLM observability dashboard for OpenAI models.**
 
-Neural Pulse is a terminal dashboard that streams OpenAI chat completions and visualizes inference in real time. Track token usage, latency, throughput, and cost from live API data — in a polished, htop-style interface.
+Neural Pulse is a terminal dashboard for monitoring OpenAI responses in real time. Track token usage, latency, throughput, API cost, and live streaming output in a polished, htop-style interface.
 
 <!-- Replace with a screenshot or asciinema recording before publishing -->
 <!-- ![Neural Pulse dashboard](docs/screenshot.png) -->
 
-> The pipeline animation is an **illustrative visualization** inspired by transformer inference — it reflects streaming activity, not real model activations.
+> The pipeline animation is an illustrative visualization inspired by transformer inference. It represents the request lifecycle and streaming activity, not the model's internal activations.
 
 ## Features
 

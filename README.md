@@ -4,7 +4,11 @@
 
 Neural Pulse is a terminal dashboard for monitoring OpenAI responses in real time. Track token usage, latency, throughput (TPS), API cost, and live streaming output in a polished, htop-style interface.
 
-![Neural Pulse Demo](./screenshots/demo.gif)
+## Demo
+
+<video src="NP-GitHub-Demo.mp4" controls width="100%"></video>
+
+[Download demo video](./NP-GitHub-Demo.mp4)
 
 > The pipeline is an illustrative visualization inspired by transformer inference. It represents the request lifecycle and streaming activity, not the model's internal activations.
 
